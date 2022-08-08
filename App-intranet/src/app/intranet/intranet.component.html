@@ -1,0 +1,7 @@
+<div class="intranet-post-card">
+  <h2>{{ intranetPost.title }}</h2>
+  <img [src]="intranetPost.imageUrl" [alt]="intranetPost.title">
+  <p>Mis en ligne le {{ intranetPost.createdDate }}</p>
+  <p>{{ intranetPost.description }}</p>
+  <p><button (click)="onLike()">{{buttonText}}</button>{{ intranetPost.snaps }}</p>
+</div>
