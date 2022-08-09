@@ -1,5 +1,4 @@
-<app-intranet [intranetPost]="myPost"></app-intranet>
-<app-intranet [intranetPost]="myOtherSnap"></app-intranet>
-<app-intranet [intranetPost]="myLastSnap"></app-intranet>
+<app-intranet *ngFor="let intranetPost of intranetPosts" [intranetPost]="intranetPost"></app-intranet>
+
 
 <router-outlet></router-outlet>
