@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IntranetPost } from '../models/intranet-post.model';
+import { IntranetPostService } from '../services/intranet-post.service';
 
 @Component({
   selector: 'app-intranet',
@@ -13,7 +14,7 @@ export class IntranetComponent implements OnInit {
   buttonText!: string;
 
 
-  constructor() { }
+  constructor(private intranetPostService: IntranetPostService) { }
 
   ngOnInit() {
     this.buttonText = 'Like';
@@ -21,7 +22,8 @@ export class IntranetComponent implements OnInit {
 
   onLike() {
     if (this.buttonText === 'Like'){
-      this.intranetPost.snaps++;
+      this.intranetPostService.snapIntranetById(this.intranetPost.id);
+      // this.intranetPost.snaps++;
       this.buttonText = 'Dislike';
     } else {
       this.intranetPost.snaps--;

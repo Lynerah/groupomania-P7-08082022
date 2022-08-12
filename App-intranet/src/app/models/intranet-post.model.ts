@@ -1,4 +1,5 @@
 export class IntranetPost {
+    id!: number;
     title!: string;
     description!: string;
     imageUrl!: string;
