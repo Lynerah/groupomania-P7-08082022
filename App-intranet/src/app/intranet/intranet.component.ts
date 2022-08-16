@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IntranetPost } from '../models/intranet-post.model';
 import { IntranetPostService } from '../services/intranet-post.service';
 
@@ -14,7 +15,8 @@ export class IntranetComponent implements OnInit {
   buttonText!: string;
 
 
-  constructor(private intranetPostService: IntranetPostService) { }
+  constructor(private intranetPostService: IntranetPostService, 
+              private router: Router) { }
 
   ngOnInit() {
     this.buttonText = 'Like';
@@ -30,6 +32,10 @@ export class IntranetComponent implements OnInit {
       // this.intranetPost.snaps--;
       this.buttonText = 'Like';
     }
+  }
+
+  onViewIntranetPost() {
+    this.router.navigateByUrl(`intranetPosts/${this.intranetPost.id}`);
   }
 
 }

@@ -9,6 +9,9 @@ import * as fr from '@angular/common/locales/fr';
 import { IntranetPostListComponent } from './intranet-post-list/intranet-post-list.component';
 import { HeaderComponent } from './header/header.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { SingleIntranetPostComponent } from './single-intranet-post/single-intranet-post.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NewIntranetPostComponent } from './new-intranet-post/new-intranet-post.component';
 
 @NgModule({
   declarations: [
@@ -16,11 +19,14 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     IntranetComponent,
     IntranetPostListComponent,
     HeaderComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    SingleIntranetPostComponent,
+    NewIntranetPostComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [ { provide: LOCALE_ID, useValue: 'fr-FR'}],
   bootstrap: [AppComponent]
