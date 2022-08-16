@@ -15,7 +15,7 @@
         <input id="imageUrl" type="text" formControlName="imageUrl">
     </div>
     <div class="action-buttons">
-        <button type="submit" (click)="onSubmitForm()">Enregistrer</button>
+        <button type="submit" (click)="onSubmitForm()" [disabled]="postForm.invalid">Enregistrer</button>
     </div>
   </form>
 </div>

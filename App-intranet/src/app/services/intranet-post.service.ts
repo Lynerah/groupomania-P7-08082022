@@ -76,9 +76,14 @@ export class IntranetPostService {
     const intranetPostById = this.getSnapIntranetById(intranetPostId);
     snapType === 'Like' ? intranetPostById.snaps++ : intranetPostById.snaps--;  
   }
-
-  unSnapIntranetById(intranetPostId:number): void{
-
+  addIntranetPost(formvalue: {title: string, description: string, imageUrl: string}) : void{
+    const intranetPost: IntranetPost = {
+      ...formvalue, 
+      snaps: 0,
+      createdDate: new Date(),
+      id: this.intranetPosts[this.intranetPosts.length - 1].id + 1
+    };
+    this.intranetPosts.push(intranetPost);
   }
 
 }
