@@ -64,20 +64,19 @@ export class IntranetPostService {
     return this.intranetPosts;
   }
 
-  getSnapIntranetById(intranetPostId:number, snapType: string) : void {
-    const intranetPostById = this.getSnapIntranetById(intranetPostId);
-    snapType === 'Like' ? intranetPostId.snaps++ : intranetPostById.snaps--;
-
-  }
-  snapIntranetById(intranetPostId:number): void {
-    const intranetPostById = this.intranetPosts.find(intranetPostById => intranetPostById.id === intranetPostId);
-    if (intranetPostById) {
-      intranetPostById.snaps++;
+  getSnapIntranetById(intranetPostId:number) : IntranetPost {
+    const intranetPostById = this.intranetPosts.find(intranetPostById => intranetPostById.id === intranetPostId );
+    if (!intranetPostById) {
+      throw new Error('Post Not found!');
     } else {
-      throw new Error('Post not found!');
+      return intranetPostById;
     }
-
   }
+  snapIntranetById(intranetPostId:number, snapType: 'Like' | 'Dislike'): void {
+    const intranetPostById = this.getSnapIntranetById(intranetPostId);
+    snapType === 'Like' ? intranetPostById.snaps++ : intranetPostById.snaps--;  
+  }
+
   unSnapIntranetById(intranetPostId:number): void{
 
   }

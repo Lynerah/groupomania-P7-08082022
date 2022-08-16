@@ -22,11 +22,12 @@ export class IntranetComponent implements OnInit {
 
   onLike() {
     if (this.buttonText === 'Like'){
-      this.intranetPostService.snapIntranetById(this.intranetPost.id);
+      this.intranetPostService.snapIntranetById(this.intranetPost.id, 'Like');
       // this.intranetPost.snaps++;
       this.buttonText = 'Dislike';
     } else {
-      this.intranetPost.snaps--;
+      this.intranetPostService.snapIntranetById(this.intranetPost.id, 'Dislike');
+      // this.intranetPost.snaps--;
       this.buttonText = 'Like';
     }
   }
