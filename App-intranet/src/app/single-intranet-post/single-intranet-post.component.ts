@@ -10,8 +10,8 @@ import { IntranetPostService } from '../services/intranet-post.service';
 })
 export class SingleIntranetPostComponent implements OnInit {
   
-  buttonText: string;
-  intranetPost: IntranetPost;
+  buttonText!: string;
+  intranetPost!: IntranetPost;
 
   constructor(private intranetPostService: IntranetPostService,
               private route: ActivatedRoute) { }

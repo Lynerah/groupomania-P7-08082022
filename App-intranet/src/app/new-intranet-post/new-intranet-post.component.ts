@@ -13,9 +13,9 @@ import { Router } from '@angular/router';
 })
 export class NewIntranetPostComponent implements OnInit {
 
-  postForm: FormGroup;
-  intranetPostPreview$: Observable<IntranetPost>;
-  urlRegex: RegExp;
+  postForm!: FormGroup;
+  intranetPostPreview$!: Observable<IntranetPost>;
+  urlRegex!: RegExp;
 
   constructor(private formBuilder: FormBuilder,
               private intranetPostService: IntranetPostService,

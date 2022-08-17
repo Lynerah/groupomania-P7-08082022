@@ -10,7 +10,8 @@ import { IntranetPostService } from '../services/intranet-post.service';
 })
 export class IntranetComponent implements OnInit {
 
-  @Input() intranetPost: IntranetPost;
+  @Input()
+  intranetPost!: IntranetPost;
 
   buttonText!: string;
 

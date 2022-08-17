@@ -12,6 +12,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SingleIntranetPostComponent } from './single-intranet-post/single-intranet-post.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NewIntranetPostComponent } from './new-intranet-post/new-intranet-post.component';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NewIntranetPostComponent } from './new-intranet-post/new-intranet-post.
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [ { provide: LOCALE_ID, useValue: 'fr-FR'}],
   bootstrap: [AppComponent]

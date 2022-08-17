@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { IntranetPost } from '../models/intranet-post.model';
 import { IntranetPostService } from '../services/intranet-post.service';
 
@@ -9,12 +10,15 @@ import { IntranetPostService } from '../services/intranet-post.service';
 })
 export class IntranetPostListComponent implements OnInit {
 
-  intranetPosts: IntranetPost[];
+  
+  intranetPosts$!: Observable<IntranetPost[]>;
+  // intranetPosts: IntranetPost[];
 
   constructor(private intranetPostService: IntranetPostService) { }
 
-  ngOnInit() { 
-    this.intranetPosts = this.intranetPostService.getAllIntranetPosts();
+  ngOnInit() :void{ 
+    // this.intranetPosts = this.intranetPostService.getAllIntranetPosts();
+    this.intranetPosts$ = this.intranetPostService.getAllIntranetPosts();
   }
 
 }

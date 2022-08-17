@@ -1,1 +1,1 @@
-<app-intranet *ngFor="let intranetPost of intranetPosts" [intranetPost]="intranetPost"></app-intranet>
+<app-intranet *ngFor="let intranetPost of intranetPosts$ | async" [intranetPost]="intranetPost"></app-intranet>
