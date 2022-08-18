@@ -23,17 +23,17 @@ export class IntranetComponent implements OnInit {
     this.buttonText = 'Like';
   }
 
-  onLike() {
-    if (this.buttonText === 'Like'){
-      this.intranetPostService.snapIntranetById(this.intranetPost.id, 'Like');
-      // this.intranetPost.snaps++;
-      this.buttonText = 'Dislike';
-    } else {
-      this.intranetPostService.snapIntranetById(this.intranetPost.id, 'Dislike');
-      // this.intranetPost.snaps--;
-      this.buttonText = 'Like';
-    }
-  }
+  // onLike() {
+  //   if (this.buttonText === 'Like'){
+  //     this.intranetPostService.snapIntranetById(this.intranetPost.id, 'Like');
+  //     // this.intranetPost.snaps++;
+  //     this.buttonText = 'Dislike';
+  //   } else {
+  //     this.intranetPostService.snapIntranetById(this.intranetPost.id, 'Dislike');
+  //     // this.intranetPost.snaps--;
+  //     this.buttonText = 'Like';
+  //   }
+  // }
 
   onViewIntranetPost() {
     this.router.navigateByUrl(`intranetPosts/${this.intranetPost.id}`);

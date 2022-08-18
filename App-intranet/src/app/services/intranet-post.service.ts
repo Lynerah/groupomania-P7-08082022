@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable, switchMap } from 'rxjs';
 import { IntranetPost } from '../models/intranet-post.model';
 
 @Injectable({
@@ -16,7 +16,7 @@ export class IntranetPostService {
 
 
 
-  intranetPosts: IntranetPost[] = [
+  // intranetPosts: IntranetPost[] = [
     // {
     //   id: 1,
     //   title: 'Archibald',
@@ -65,7 +65,7 @@ export class IntranetPostService {
     //   createdDate: new Date(),
     //   snaps: 0
     // }
-  ];
+  // ];
 
   // getAllIntranetPosts(): IntranetPost[] {
   //   return this.intranetPosts;
@@ -75,26 +75,54 @@ export class IntranetPostService {
     return this.http.get<IntranetPost[]>('http://localhost:3000/facesnaps');
   }
 
-  getSnapIntranetById(intranetPostId:number) : IntranetPost {
-    const intranetPostById = this.intranetPosts.find(intranetPostById => intranetPostById.id === intranetPostId );
-    if (!intranetPostById) {
-      throw new Error('Post Not found!');
-    } else {
-      return intranetPostById;
-    }
+  // getSnapIntranetById(intranetPostId:number) : IntranetPost {
+  //   const intranetPostById = this.intranetPosts.find(intranetPostById => intranetPostById.id === intranetPostId );
+  //   if (!intranetPostById) {
+  //     throw new Error('Post Not found!');
+  //   } else {
+  //     return intranetPostById;
+  //   }
+  // }
+  getSnapIntranetById(intranetPostId:number) : Observable<IntranetPost> {
+    return this.http.get<IntranetPost>(`http://localhost:3000/facesnaps/${intranetPostId}`)
   }
-  snapIntranetById(intranetPostId:number, snapType: 'Like' | 'Dislike'): void {
-    const intranetPostById = this.getSnapIntranetById(intranetPostId);
-    snapType === 'Like' ? intranetPostById.snaps++ : intranetPostById.snaps--;  
-  }
-  addIntranetPost(formvalue: {title: string, description: string, imageUrl: string}) : void{
-    const intranetPost: IntranetPost = {
-      ...formvalue, 
-      snaps: 0,
-      createdDate: new Date(),
-      id: this.intranetPosts[this.intranetPosts.length - 1].id + 1
-    };
-    this.intranetPosts.push(intranetPost);
+  // snapIntranetById(intranetPostId:number, snapType: 'Like' | 'Dislike'): void {
+  //   // const intranetPostById = this.getSnapIntranetById(intranetPostId);
+  //   // snapType === 'Like' ? intranetPostById.snaps++ : intranetPostById.snaps--;  
+  // }
+
+  snapIntranetById(intranetPostId:number, snapType: 'Like' | 'Dislike'):  Observable<IntranetPost> {
+    return this.getSnapIntranetById(intranetPostId).pipe(
+      map(intranetPost => ({
+        ...intranetPost, snaps: intranetPost.snaps + (snapType === 'Like' ? 1 : -1)
+      })),
+      switchMap(updateIntranetPost => this.http.put<IntranetPost>(`http://localhost:3000/facesnaps/${intranetPostId}`, updateIntranetPost))
+    )
   }
 
+  // addIntranetPost(formvalue: {title: string, description: string, imageUrl: string}) : void{
+  //   const intranetPost: IntranetPost = {
+  //     ...formvalue, 
+  //     snaps: 0,
+  //     createdDate: new Date(),
+  //     id: this.intranetPosts[this.intranetPosts.length - 1].id + 1
+  //   };
+  //   this.intranetPosts.push(intranetPost);
+  // }
+  addIntranetPost(formValue: {title: string, description: string, imageUrl: string}) : Observable<IntranetPost> {
+    return this.getAllIntranetPosts().pipe(
+      map(intranetPosts => [...intranetPosts].sort((a,b) => a.id - b.id)),
+      map(sortedFacesnaps => sortedFacesnaps[sortedFacesnaps.length - 1]),
+      map(previousFacesnap => ({
+            ...formValue,
+            snaps: 0,
+            createdDate: new Date(),
+            id: previousFacesnap.id + 1
+        })),
+        switchMap(newFacesnap => this.http.post<IntranetPost>(
+            'http://localhost:3000/facesnaps',
+            newFacesnap)
+      )
+    );
+  }
 }

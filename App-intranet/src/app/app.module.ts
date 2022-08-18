@@ -13,6 +13,7 @@ import { SingleIntranetPostComponent } from './single-intranet-post/single-intra
 import { ReactiveFormsModule } from '@angular/forms';
 import { NewIntranetPostComponent } from './new-intranet-post/new-intranet-post.component';
 import { HttpClientModule } from '@angular/common/http'
+import { httpInterceptorProviders } from './interceptors';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { HttpClientModule } from '@angular/common/http'
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ { provide: LOCALE_ID, useValue: 'fr-FR'}],
+  providers: [ { provide: LOCALE_ID, useValue: 'fr-FR'}, httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {
