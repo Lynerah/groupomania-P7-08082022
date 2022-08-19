@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { IntranetPost } from '../models/intranet-post.model';
+import { IntranetPost } from '../../../core/models/intranet-post.model';
 import {map, tap} from 'rxjs/operators'
-import { IntranetPostService } from '../services/intranet-post.service';
+import { IntranetPostService } from '../../../core/services/intranet-post.service';
 import { Router } from '@angular/router';
 
 @Component({

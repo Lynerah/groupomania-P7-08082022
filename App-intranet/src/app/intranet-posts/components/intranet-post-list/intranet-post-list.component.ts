@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IntranetPost } from '../models/intranet-post.model';
-import { IntranetPostService } from '../services/intranet-post.service';
+import { IntranetPost } from '../../../core/models/intranet-post.model';
+import { IntranetPostService } from '../../../core/services/intranet-post.service';
 
 @Component({
   selector: 'app-intranet-post-list',
