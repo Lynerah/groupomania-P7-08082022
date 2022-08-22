@@ -15,6 +15,7 @@ import { IntranetPostListComponent } from './intranet-posts/components/intranet-
 // import { HttpClientModule } from '@angular/common/http'
 import { CoreModule } from './core/core.module';
 import { LandingPageModule } from './landing-page/landing-page.module';
+import { AuthModule } from './auth/auth.module';
 // import { IntranetPostsModule } from './intranet-posts/intranet-posts.module';
 // import { httpInterceptorProviders } from './core/interceptors';
 
@@ -36,6 +37,7 @@ import { LandingPageModule } from './landing-page/landing-page.module';
     CoreModule,
     LandingPageModule, 
     // IntranetPostsModule
+    AuthModule
   ],
   // providers: [ 
   //   { provide: LOCALE_ID, useValue: 'fr-FR'},
