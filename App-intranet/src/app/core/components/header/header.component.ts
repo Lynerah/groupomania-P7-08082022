@@ -14,6 +14,6 @@ export class HeaderComponent implements OnInit {
   }
 
   onAddNewIntranetPost() {
-    this.router.navigateByUrl('/create');
+    this.router.navigateByUrl('intranetPosts/create');
   }
 }
