@@ -1,0 +1,8 @@
+<div class="intranet-post-card" *ngIf="intranetPost$ | async as intranetPost" [ngClass]="{ snapped: buttonText === 'Dislike' }">
+  <h2>{{ intranetPost.title | uppercase }}</h2>
+  <img [src]="intranetPost.imageUrl" [alt]="intranetPost.title">
+  <p>Mis en ligne le {{ intranetPost.createdDate | date: 'd MMMM yyy'}}</p>
+  <p>{{ intranetPost.description }}</p>
+  <p><button (click)="onLike(intranetPost.id)">{{buttonText}}</button><span [ngStyle]="{ color: 'rgb(0, ' + intranetPost.snaps + ', 0)' }">{{ intranetPost.snaps }}</span></p>
+  <a routerLink="/intranetPosts">Back</a>
+</div>

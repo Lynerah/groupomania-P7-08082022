@@ -1,0 +1,5 @@
+<div class="intranet-post-card" [ngClass]="{ snapped: buttonText === 'Dislike' }">
+  <h2>{{ intranetPost.title | uppercase }}</h2>
+  <p>{{ intranetPost.description }}</p>
+  <button (click)="onViewIntranetPost()">VIEW</button>
+</div>
